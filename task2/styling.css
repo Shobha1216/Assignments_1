@@ -1,0 +1,161 @@
+header{
+    display: flex;
+    align-items: center;
+    background-color: white;
+
+}
+.col-xs-4{
+    width: 40%;
+    align-items: center;
+
+}
+.col-xs-6{
+    width:50%;
+   
+}
+.col-xs-2{
+    width:20%;
+}
+.col-xs-6>ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: absolute;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+li>a:hover{
+    display: block;
+    cursor: pointer;
+    border-bottom: 2px solid #000;
+    color: blue;
+}
+body{
+    display: flex;
+    flex-direction:row;
+    color:white ;
+    width:100%;
+}
+.left{
+    background-color:lightskyblue;
+    width: 50%;
+    padding-left: 20px;
+    margin:0px;
+    
+    border-bottom-right-radius: 60px;
+}
+.right{
+    background-color: blue;
+    width:50%;
+}
+
+body>section>div{
+    display: flex;
+    flex-direction: row;
+}
+.firstpart{
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+}
+
+.logo{
+    color:blue;
+    margin-left: 80px;
+
+}
+
+.foot>div.hh>ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; 
+}
+
+.foot{
+    display: flex;
+    
+    
+}
+.foot>div.abc{
+    width:50%;
+}
+.foot>div>p{
+    color: black;
+}
+.r1{
+   width: 100px;
+   height: 120px;
+   background-color: blue;
+   border-radius: 10px;
+   margin: 10px;
+   text-align: center;
+}
+.r2{
+    width: 100px;
+    height: 120px;
+    background-color:lightskyblue;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+ }
+ .r3{
+    width: 100px;
+    height: 120px;
+    background-color: black;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+ }
+ .opt{
+     display: flex;
+     flex-direction: row;
+     font-size: 15px;
+     justify-content:space-evenly;
+ }
+ .x{
+     margin:6px;
+ }
+ .y{
+     font-size: 2em;
+     margin:2px;
+ }
+ .z{
+     font-size: 20px;
+     margin:2px;
+ }
+ .left>a{
+   color:blue;
+   font-family:arial Narrow Bold;
+   box-sizing: border-box;
+   background-color: aliceblue;
+   justify-content: center;
+   box-shadow: 3px 3px  3px 3px #ffffff;
+   padding: 3px;
+   border-radius: 1px;
+   font-size: large;
+   border: rgba(0, 0, 0, 0.808);
+
+ }
+ .last{
+     color: black;
+ }
+ .secondpart{
+     margin :20px;
+ }
+ .firstpart{
+     background-color: blue;
+ }
+ .col-xs-2>a{
+    box-sizing: content-box;
+    border: 1px solid black;
+    padding: 0px;
+    float: right;
+ }
+ .abc>p>span>a{
+     color: blue;
+ }

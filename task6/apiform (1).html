@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+</head>
+<body>
+    <script>
+    apidata();
+	function apidata() {
+		const xhr = new XMLHttpRequest();
+		xhr.open("GET","http://corridor.cloud.wavemakeronline.com/EmployeesAPI/services/HRAPI/Employee", true);
+		xhr.onload = function () {
+			obj = JSON.parse(this.responseText);
+            let data=obj.content;
+            for(let index=0;index<data.length;index++){
+                let div=document.createElement('div');
+                        div.className ="maindiv";
+
+                        let eid=document.createElement("h2");
+                        eid.innerHTML = data[index].empId;
+                        eid.className ="emid";
+                        div.appendChild(eid);
+
+                        let mail=document.createElement("h2");
+                        mail.innerHTML = data[index].street;
+                        mail.className ="mlid";
+                        div.appendChild(mail);
+
+                        let name = document.createElement("h2");
+                        name.innerHTML = data[index].firstname +" " + data[index].lastname;
+                        name.className ="flname";
+                        div.appendChild(name);
+
+                        document.body.appendChild(div);
+                    }
+			}
+			xhr.send();  
+
+        
+    }       
+    </script>
+</body>
+</html>

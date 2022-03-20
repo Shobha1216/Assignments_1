@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,
+			initial-scale=1, shrink-to-fit=no" />
+
+	
+    <link rel="stylesheet" href="todo.css">
+	<title>
+		Api data collecting
+	</title>
+</head>
+
+<body>
+	
+
+	<div class="container">
+		<h1>Employee Details</h1>
+		
+	</div>
+
+	
+	<script>
+		output();
+
+		function output() {
+
+			
+			const xhr = new XMLHttpRequest();
+
+			
+			xhr.open("GET","https://reqres.in/api/users?page=1", true);
+
+
+
+
+			
+			xhr.onload = function () {
+				 obj=JSON.parse(this.responseText);
+				 let data=obj.data;
+				//  const div2=document.createElement('div');
+				// 	 const Id=document.createElement('p');
+				// 	 id.innerText="Id";
+				// 	div2.appendChild(Id);
+
+				// 	 const f_name=document.createElement('p');
+				// 	 id.innerText="f_name";
+				// 	div2.appendChild(f_name);
+
+				// 	const l_name=document.createElement('p');
+				// 	 id.innerText="l_name";
+				// 	 div2.appendChild(l_name);
+
+				// 	 const _email=document.createElement('p');
+				// 	 id.innerText="email Address";
+				// 	 div2.appendChild(_email);
+
+				// 	 const person_image=document.createElement('p');
+				// 	 id.innerText="image";
+				// 	div2.appendChild(person_image);
+
+					
+				// 	 document.body.appendChild(div2);
+
+
+					 for (let index = 0; index < data.length; index++) {
+						let div = document.createElement("div");
+					     div.className="maindiv";
+                         
+						let id=document.createElement('h2');
+						id.innerText=data[index].id;
+					 	div.appendChild(id);
+
+
+						let fname=document.createElement('h2');
+					 	fname.innerText=data[index].first_name;
+					 	div.appendChild(fname);
+
+					 	let lname=document.createElement('h2');
+					 	lname.innerText=data[index].last_name;
+					 	div.appendChild(lname);
+
+					
+
+					 	let email=document.createElement('h2');
+						email.innerText=data[index].email;
+					 	div.appendChild(email);
+						 
+						 let image=document.createElement('img');
+						 image.src=data[index].avatar;
+						 image.className="image";
+						 div.appendChild(image);
+                        
+					 	document.body.appendChild(div);
+
+					 }
+					 
+
+					
+
+					
+					}
+
+
+					
+					
+			
+			
+			xhr.send();
+		}
+		
+
+		
+
+	</script>
+
+	
+</body>
+
+</html>

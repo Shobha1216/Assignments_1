@@ -1,0 +1,22 @@
+h1{
+    
+    color:rebeccapurple;
+    display: flex;
+    justify-content: center;
+    border: 2px solid rgb(124, 140, 230);
+    margin:20px 200px 0px 200px;
+    padding:10px;
+    background-color: aqua;
+}
+
+.maindiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid black;
+    margin: 0px 200px 0px 200px ;
+    background-color: blanchedalmond;
+}
+image{
+    border-radius: 50%;
+}

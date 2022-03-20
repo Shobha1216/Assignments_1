@@ -1,0 +1,85 @@
+
+  h3 {
+    color: purple;
+    font-size:20px;
+  }
+  p {
+    color:rgba(red, green, blue, alpha);
+    font-family: Verdana;
+    border: 3px rebeccapurple;
+    size: 30px;
+  }
+  .heading{
+    color: blue;
+    font-size: 20px;
+  }
+  a{
+    color:purple;
+    font-size: 20px;
+    text-align: right;
+  }
+  .image{
+    width: 500px; 
+    height: 400px;
+    padding: 10px 20px 20px;
+    border: 3px solid saddlebrown;
+    margin: 50px;
+    
+  }
+  img{
+    size:20px;
+  }
+  pre{
+      color:rgb(255, 0, 179);
+      size: 10px;
+  }
+  dd{
+    color:brown;
+    font-size:20px;
+  }
+  dl{
+    color:blueviolet;
+    font-size: 30px;
+
+  }
+  .div1{
+    float: left;
+    color:black;
+    font-size: 30px;
+  }
+  .div2{
+    float: left;
+    color:blue;
+    font-size: 30px;
+  }
+  .div3{
+    float:left;
+    color:bisque;
+    font-size:30px;
+  }
+  #myWorld{
+    background-color: lightblue;
+  color: black;
+  padding: 40px;
+  text-align: center;
+  }
+.thankyou{
+  float:none;
+  font-size: 30px;
+  text-align: center;
+}
+.welcome{
+  font-size: 30px;
+  color:blueviolet;
+  text-align: center;
+  font-family: verdana;
+  background-color: blanchedalmond ;
+  text-shadow: 3px 4px black;
+}
+.back{
+  size: 50px;
+}
+form{
+  color: aqua;
+}
+

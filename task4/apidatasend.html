@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head><title>form data to api</title>
+        <link rel="stylesheet" href="formcss.css">
+    </head>
+<body>
+
+<div id="demo">
+<h2>Employ Details</h2>
+<!-- <button type="button" onclick="loadDoc()">Change Content</button> -->
+</div>
+<div class="form">
+<form id="myForm">
+    
+    
+
+   <div class="label">
+   
+   <label for="empid">Employid:</label><br><br>
+
+   <label for="firstname">Firstname:</label><br><br>
+
+   <label for="lastname">Lastname:</label><br>
+    
+
+   <label for="street">street:</label><br>
+   <br>
+
+   <label for="city">city:</label><br>
+   
+<br>
+   <label for="state">state:</label>
+   
+<br><br>
+   <label for="sisocode">sisocode:</label>
+   
+<br><br>
+   <label for="birthdate">birthdate:</label>
+   <br>
+   
+   <label for="picurl">picurl:</label>
+   </div>
+
+ <div class="input">
+   <input type="text" id="empid" name="empid" placeholder="enter id"><br>
+   <input type="text" id="fname" name="fname" placeholder="firstname"><br>
+   <input type="text" id="lname" name="lname" placeholder="lastname"><br>
+   <input type="text" id="street" name="street" placeholder="enter street"><br>
+   <input type="text" id="city" name="city" placeholder="city"><br>
+   <input type="text" id="state" name="state" placeholder="state"><br>
+   <input type="text" id="sisocode" name="siscode" placeholder="sisocode"><br>
+   <input type="date" id="birthdate" name="birthdate" placeholder="birthdate"><br>
+   <input type="picurl" id="picurl" name="picurl" placeholder="picurl"><br>
+   <input type="submit" value="submit">  
+   </div>
+
+  </form>
+</div>
+<!-- 
+<script>
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML =
+    this.responseText;
+  }
+  xhttp.open("GET", "http://corridor.cloud.wavemakeronline.com/EmployeesAPI/services/HRAPI/Employee",true); -->
+  <!-- xhttp.send(); -->
+
+</script>
+
+</body>
+</html>
