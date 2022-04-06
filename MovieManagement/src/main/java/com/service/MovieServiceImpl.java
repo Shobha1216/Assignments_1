@@ -1,62 +1,66 @@
 package com.service;
 
-import com.db.Dbconn;
+import com.db.DbConnection;
 import com.model.Movie;
 
 
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class MovieServiceImpl implements MovieService {
-    Scanner input=new Scanner(System.in);
-    public static Dbconn dbConnection = new Dbconn();
+    DbConnection dbConnection = new DbConnection();
+    List<Movie> movieList=new ArrayList<Movie>();
+
     @Override
     public List<Movie> getMovies() {
-        return null;
+        try {
+            ResultSet resultSet=dbConnection.getMovieList();
+            while (resultSet.next()) {
+                Movie movie=new Movie();
+                movie.setMovieId(resultSet.getInt(1));
+                movie.setMovieName(resultSet.getString(2));
+                movie.setReleaseDate(resultSet.getString(3));
+                movieList.add(movie);
+            }
+            return movieList;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @Override
     public Movie getMovieId(int movieId) {
-        Connection connection = null;
-        Statement statement = null;
-        int ele=input.nextInt();
-        try {
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from Movie");
 
-            while (resultSet.next()) {
-                int movieid = resultSet.getInt(1);
-                String moviename = resultSet.getString(2);
-                String release_date = resultSet.getString(3);
-                System.out.println(movieid + " " + moviename + " " + release_date);
-            }
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+       return null;
+    }
 
 
-        }
-        return null;
+    @Override
+    public Movie createMovie(Movie movie) throws SQLException {
+        dbConnection.insertMovie(movie);
+        movieList.add(movie);
+        return movie;
     }
 
     @Override
-    public Movie createMovie()  {
-        return null;
+    public Movie updateMovie(Movie movie) throws SQLException {
+        dbConnection.updateMovie(movie);
+        return movie;
+
     }
 
     @Override
-    public Movie updateMovie() {
-        return null;
+    public Movie DeleteMovie(Movie movie) throws SQLException {
+        dbConnection.deleteMovie(movie);
+        return movie;
     }
+
+
+
+
 }

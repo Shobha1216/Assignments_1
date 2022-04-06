@@ -10,6 +10,8 @@ public interface MovieService {
 
     List<Movie> getMovies();
     Movie getMovieId(int movieId);
-    Movie createMovie();
-    Movie updateMovie();
+    Movie createMovie(Movie movie) throws SQLException;
+    Movie updateMovie(Movie movie) throws SQLException;
+    Movie DeleteMovie(Movie movie) throws SQLException;
+
 }
