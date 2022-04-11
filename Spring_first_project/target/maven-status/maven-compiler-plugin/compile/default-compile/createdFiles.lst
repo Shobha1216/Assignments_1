@@ -1,0 +1,5 @@
+com\services\InMemoryBokkserviceImpl.class
+com\services\DatabaseBookServiceImpl.class
+com\controllers\BookController.class
+com\services\BookService.class
+com\models\Book.class
