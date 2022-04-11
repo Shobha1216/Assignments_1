@@ -21,7 +21,7 @@ public class DatabaseServiceImpl  implements TicketService{
         List<Ticket> ticketList=session.createQuery("from Ticket",Ticket.class).list();
         transaction.commit();
         session.close();
-        return ticketList ;
+        return ticketList;
     }
 
     @Override
@@ -35,35 +35,48 @@ public class DatabaseServiceImpl  implements TicketService{
     }
 
     @Override
-    public Ticket createTicket(Ticket ticket) {
+    public String createTicket(Ticket ticket) {
         Session session=sessionFactory.openSession();
         Transaction transaction=session.beginTransaction();
         session.save(ticket);
-        transaction.commit();
+        try {
+            transaction.commit();
+        }catch (Exception e){
+            return "unable to create Ticket";
+        }
         session.close();
-        return  ticket;
+        return  "Successfully created Ticket";
     }
 
     @Override
-    public Ticket updateTicket(Ticket ticket) {
+    public String updateTicket(Ticket ticket) {
         Session session=sessionFactory.openSession();
         Transaction transaction=session.beginTransaction();
         session.update(ticket);
-        transaction.commit();
+        try {
+            transaction.commit();
+        }catch (Exception e){
+            return "unable to update Ticket";
+        }
         session.close();
-        return  ticket;
+        return  "Successfully Updated";
 
     }
 
     @Override
-    public Ticket DeleteTicket(Ticket ticket) {
+    public String deleteTicket(Ticket ticket) {
         Session session=sessionFactory.openSession();
         Transaction transaction=session.beginTransaction();
         session.delete(ticket);
-        transaction.commit();
+        try {
+            transaction.commit();
+        }catch (Exception e){
+            return  "unable to delete Ticket";
+        }
         session.close();
-        return  ticket;
+        return  "Ticket successfully deleted";
     }
+
 
 
 }

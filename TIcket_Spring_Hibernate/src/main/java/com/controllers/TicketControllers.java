@@ -21,33 +21,33 @@ public class TicketControllers {
 
     }
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(name="/getTickets",method= RequestMethod.GET)
     public List<Ticket> getTickets(){
         return ticketService.getTickets();
     }
 
 
-    @RequestMapping(value = "/{id}", method=RequestMethod.GET)
+    @RequestMapping( name="/getTicketById",value = "/{id}", method=RequestMethod.GET)
     public Ticket getTicketById(@PathVariable(name="id") int ticketId){
         return ticketService.getTicketById(ticketId);
     }
 
-    @RequestMapping(method= RequestMethod.POST)
+    @RequestMapping( name="/createTicket",method= RequestMethod.POST)
     public Ticket createTicket(@RequestBody Ticket  ticket){
         ticketService.createTicket(ticket);
         return ticket;
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping( name="/updateTicket",method = RequestMethod.PUT)
     public Ticket updateTicket(@RequestBody Ticket ticket){
         ticketService.updateTicket(ticket);
         return ticket;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(name ="/deleteTicket",method = RequestMethod.DELETE)
     public  Ticket deleteTicket(@RequestBody Ticket ticket){
-        ticketService.DeleteTicket(ticket);
+        ticketService.deleteTicket(ticket);
         return ticket;
     }
 }
