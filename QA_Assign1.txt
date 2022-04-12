@@ -1,0 +1,25 @@
+Search Button:
+1.Search button is not working when we enter the product which is not in the product list.
+2.not working when press enter button after giving input.
+
+Picture:
+3.Is picture navigating to the relevant url or not.
+
+Login:
+4.Is login working properly.
+5. user details validation in signin process.
+6.page navigation after login.
+
+7.menu products showing corrects products or not.cameras,laptops,smartphone etc..
+8.check the order of the products with respect to price. 
+9. check Quick view 
+10.order of price low to high and high to is sorting properly.
+
+11.check that able to add to the cart.
+12.when click on the search after selecting particular product  check is again navigating or not.
+13.Is order placing correctly,able to tract the order and  cancel.
+
+14.After changing the details while signing in is it taking new input or old details.
+15.able to cancel the order or not.
+16.check able to printing invoice or not.
+17.Loading more products properly.
