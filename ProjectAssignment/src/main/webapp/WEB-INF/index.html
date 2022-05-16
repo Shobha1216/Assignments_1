@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="#"
+            ><img
+              id="MDB-logo"
+              src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
+              alt="MDB Logo"
+              draggable="false"
+              height="30"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto align-items-center">
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i>Post</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#!"><i class="fas fa-bell pe-2"></i>Alerts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-2" href="#!"><i class="fas fa-heart pe-2"></i>Trips</a>
+              </li>
+              <li class="nav-item ms-3">
+                <a class="btn btn-black btn-rounded" href="#!">Sign in</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar -->
+    
+
+
+      
+
+    <div class="container-fluid  ">
+
+        <canvas id="myChart"></canvas>
+
+    </div>
+
+    <!-- <div class="container btn-primary ">
+
+        div conatiner 12
+    </div> -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+
+
+<script>
+    $(document).ready(
+        function(){
+            showGraph();
+        }
+    );
+    function showGraph()
+    {
+      $.get("http://localhost:8081/ProjectAssignment/getWithStatus",
+    
+        function(data){
+    
+        var name = ['Completed','Pending','Reveiwed'];
+        var details = [];
+        for(let i=0;i<data.length;i++)
+            {
+         details.push(data[i]);
+            }
+    
+        var chartdata={
+            labels: name,
+            datasets: [
+            {
+                backgroundColor: ['rgb(92, 219, 28)','blue','rgb(34, 230, 220)'],
+                data: details
+            }
+            ]
+        };
+        var options={
+    title: {
+        display: true,
+        text: 'ASSIGNMENTS STATUS'
+    },
+    elements:{
+    arc: {
+        borderWidth: 0
+    }
+    }
+    };
+    var graphTarget = $("#myChart");
+    var graph=new Chart(graphTarget,{
+        type: 'pie',
+         data: chartdata,
+         options:options
+    });
+    
+      });
+    }
+    //for interns count
+    //  const p = document.getElementById("p")
+    //          fetch('http://localhost:8081/ProjectAssignment/interns/getInternCount')
+    //     .then((response) => {
+    //         return response.json();
+    //     })
+    //     .then((data) => {
+    //         p.innerText = data
+    //     });
+    //         console.log(p);
+    
+    // //for assignment count
+    // const pp = document.getElementById("pp")
+    //          fetch('http://localhost:8081/ProjectAssignment/getAssignmentCount')
+    //     .then((response) => {
+    //         return response.json();
+    //     })
+    //     .then((data) => {
+    //         pp.innerText = data
+    //     });
+    //         console.log(pp);
+    
+    </script>
+ 
+
+
+</body>
+</html>

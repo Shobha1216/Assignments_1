@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>internassignmentList</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+    	table{
+ border-collapse: collapse;
+}
+    tr:nth-child(odd) {
+background-color: #f2f2f2;
+}
+        table,th,td{
+           
+			padding: 10px;
+        }
+		.div{
+			padding: 10px 20px;
+
+		}
+		h1{
+			text-align: center;
+			color: aquamarine;
+			text-shadow: 1px black;
+		}
+		
+        th{
+background-color:rgba(127, 236, 255, 0.813);
+width:400px;
+}
+
+table{
+ border-collapse: collapse;
+}
+
+tr:nth-child(odd) {
+background-color: #f2f2f2;
+}
+
+    </style>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body class="body">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: lightseagreen;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">AssignmentTracker</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="internList1.html">Manage Interns</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="AssignmentList.html">Manage Assignments</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="listInternAssignment.html"> Intern Assignments</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active"  href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Status
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="isComplete.html">Completed Assignments</a></li>
+                  <li><a class="dropdown-item" href="isPending.html">Pending Assignments</a></li>
+                  <li><a class="dropdown-item" href="isReviewed.html">Reviewed Assignments</a></li>
+                  
+                </ul>
+              </li>
+            </ul>
+            <!-- <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+          </div>
+        </div>
+      </nav>
+    
+<div class="image">
+    <p style="background-image: url('background.jpg');"></p>
+    <h1 class="h1">Intern Assignment List</h1>
+    <div id="containerfortable" class="div">
+        <table id="internAssignment" style="width: 100%;">
+            <tr clas="thead-dark">
+               
+                <th>Intern Name</th>
+                <th>Assignment</th>
+                <th>Status</th>
+                <th>Remarks</th>
+            </tr>
+        </table>
+        <ul id="data"></ul>
+        <p id="intern"></p>
+        <ul id="innerUl"></ul>
+    </div>
+
+</div>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+        var response = xhttp.responseText;
+        var data=JSON.parse(response);
+        for(let i=0;i<data.length;i++)
+        {
+
+            row=document.createElement("tr");
+           
+            internId=document.createElement("td");
+             assignmentId=document.createElement("td");
+		     status1=document.createElement("td");
+		     remarks=document.createElement("td");
+            
+            internId.appendChild(document.createTextNode(data[i].intern.internName));
+            assignmentId.appendChild(document.createTextNode(data[i].assignment.assignmentName));
+		
+			remarks.appendChild(document.createTextNode(data[i].remarks));
+            
+
+
+
+            
+            row.appendChild(internId);
+            row.appendChild(assignmentId);
+			
+			      row.appendChild(remarks);
+           
+
+            document.getElementById("internAssignment").appendChild(row);
+
+
+        }
+		document.getElementById("containerfortable").appendChild(document.getElementById("internAssignment"));
+
+    }
+};
+xhttp.open("GET", "http://localhost:8081/ProjectAssignment/getAllIsComplete", true);
+
+xhttp.send();
+    </script>
+
+</body>
+</html>

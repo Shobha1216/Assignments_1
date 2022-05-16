@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,
+			initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>
+        Api data collecting
+    </title>
+
+    <style>
+
+        .container{
+        display:flex;
+        justify-content: space-around;
+        background-color:lightblue;
+        flex-wrap:wrap-reverse;
+        flex-flow:row-wrap;
+        margin-top:30px;
+        }
+        .maindiv{
+        padding:10px;
+        background:white;
+        box-shadow:1px 1px 1px 1px rgba(19, 18, 17, 0.025);
+        border-radius:30px;
+        justify-content:center;
+        margin:20px;
+        font-size:10px;
+        width:200px;
+       
+        align-items:center;
+
+
+        }
+        h1{
+        text-align:center;
+        margin-top: 70px;
+        }
+        .image{
+        border-radius:50%;
+        }
+         #button1 {
+     line-height: 25px;
+     width: 80px;
+
+     font-size: 15px;
+     font-family: tahoma;
+     margin-top: 40px;
+     margin-left: 50px;
+     position:absolute;
+     top:0;
+     left:0;
+     background-color:lightgreen;
+     border-radius:10px;
+     border:none
+ }
+
+        #button {
+     line-height: 25px;
+     width: 120px;
+     font-size: 15px;
+     font-family: tahoma;
+     margin-top: 40px;
+     margin-right: 50px;
+     position:absolute;
+     top:0;
+     right:0;
+     background-color:lightgreen;
+     border-radius:10px;
+     border:none;
+     padding:0;
+ }
+
+a{
+text-decoration:none;
+}
+#button:hover{
+background-color:goldenrod;
+color: white;
+}
+#button1:hover{
+background-color:goldenrod;
+color: white;
+}
+    </style>
+
+</head>
+
+<body>
+
+<h1>Interns Details</h1>
+<button id="button" type="button"><i class="fa fa-user-plus" aria-hidden="true"></i>Add Intern</a></button>
+<div class="container" id="divoutside">
+    </div>
+
+ <button id="button1" class='btn btn-success pull-left' type="button">
+     <a href="index.html"><i class="fa fa-backward" aria-hidden="true"></i> Back</a>
+</button>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> addintern</button>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+       <div class="modal-content">
+        
+            <div class="modal-body">
+        
+                <div class="main-block">
+                    <h1>Add Intern</h1>
+                    <form id="myform" >
+                       <hr>
+                       <label id="icon" for="id"><i class="fa fa-key"></i></label>
+                       <input type="text" name="internId" id="id"placeholder="Intern Id*"  required/>
+                        <label id="icon" for="name"><i class="fa fa-user"></i></label>
+                        <input type="text" name="internname" id="name"  placeholder="Intern Name*" required/>
+                       <label id="icon" for="email"><i class="fa fa-envelope"></i></label>
+                        <input type="email" name="email" id="email" placeholder="Email*" required/>
+                        <label id="icon" for="Phoneno"><i class="fa fa-phone"></i></label>
+                        <input type="text" name="PhoneNo" id="Phoneno" placeholder="Phone No*" required minlength="10" maxlength="10" size="10"/>
+                        <label id="icon" for="url"><i class="fa fa-image"></i></label>
+                        <input type="text" name="name" id="url" placeholder="Image Url*" required/>
+                        <hr>
+                        <input id="btn1" class="button" class="button" type="submit" onsubmit="postInterns()"></input>
+                    </form>
+               </div>
+            </div>
+        
+            <div class="modal-footer">
+               <button type="button"id="close" class="btn btn-default" data-dismiss="modal" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+		output();
+
+		function output() {
+
+
+			const xhr = new XMLHttpRequest();
+
+
+			xhr.open("GET","http://localhost:8081/ProjectAssignment/interns/getAllInterns", true);
+
+
+			xhr.onload = function () {
+				var obj=JSON.parse(this.responseText);
+
+					 for (let index = 0; index < obj.length; index++) {
+						let div = document.createElement("div");
+					     div.className="div";
+
+					     let div1 = document.createElement("div");
+					     div1.className="maindiv";
+
+                        let imageUrl=document.createElement('img');
+						 imageUrl.src=obj[index].imageUrl;
+						 imageUrl.className="image";
+						 div.appendChild(imageUrl);
+						 imageUrl.className="image";
+                         let name=document.createElement('h2');
+					 	name.innerText=obj[index].internName;
+					 	div.appendChild(name);
+
+						let id=document.createElement('h2');
+						id.innerText=obj[index].internId;
+					 	div.appendChild(id);
+
+					 	let email=document.createElement('h2');
+					 	email.innerText=obj[index].email;
+					 	div.appendChild(email);
+
+
+
+					 	let phoneNo=document.createElement('h2');
+						phoneNo.innerText=obj[index].phoneNo;
+					 	div.appendChild(phoneNo);
+
+                        let span =document.createElement("button");
+                        span.innerHTML = `<i class="fa fa-2x fa-trash-o" aria-hidden="true" onclick=deleteInternById(${obj[index].internId})></i>`;
+                         
+                        let span1 =document.createElement("button");
+                        span1.innerHTML=`<i class="fa fa-edit"></i>`
+
+                        let span2 =document.createElement("button");
+                        span2.innerHTML=`<i class="fa fa-plus" onclick=addassignment(${obj[index].internId})></i>`
+
+                        div.appendChild(span);
+
+                        div.appendChild(span1);
+
+                        div.appendChild(span2);
+
+					 	div1.appendChild(div);
+
+					 	document.getElementById("divoutside").appendChild(div1);
+
+					 }
+
+					}
+
+			xhr.send();
+		}
+
+        async function deleteInternById(x){
+    url=("http://localhost:8081/ProjectAssignment/interns/del?"+ new URLSearchParams({id:x}).toString());
+    // var internId=document.getElementById("id").value;
+    // var internName=document.getElementById("name").value;
+    // var email=document.getElementById("email").value
+    // var phoneNo=document.getElementById("Phoneno").value
+    // var imageUrl=document.getElementById("imageurl").value
+    let data={
+        internId:x
+        // internName:internName,
+        // email:email,
+        // phoneNo:phoneNo,
+        // imageUrl:imageUrl
+
+    };
+
+    console.log(data);
+
+
+    // params={
+    // method :'POST',
+    // headers:{
+    //         'Content-Type':'application/json',
+    //         'Accepts':'application/json'
+    //     },
+    //     body :JSON.stringify(data)
+    // };
+
+    await fetch(url,{
+        method:"delete",
+        headers : {
+            'Content-Type':'application/json',
+            'Accepts':'application/json'
+
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>
+        console.log(data)
+        );
+        window.location.href="internList1.html"
+}
+
+	</script>
+
+
+</body>
+
+</html>

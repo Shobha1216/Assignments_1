@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>status</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+     crossorigin="anonymous">
+</head>
+<style>
+    table,th,tr{
+        border:none !important;
+    }
+    th{
+background-color:rgba(32, 178, 171, 0.231);
+width:400px;
+}
+
+form {
+      margin: 0 30px;
+      width:300px;
+      }
+      #btn1 {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px; 
+      border: none;
+      background: lightseagreen; 
+      font-size: 14px;
+      font-weight: 600;
+      color: white
+
+      }
+    #btn1:hover {
+      background: lightseagreen;
+      }
+      
+      label#icon {
+      margin: 0;
+      border-radius: 5px 0 0 5px;
+      }
+     
+      input[type=text],input[type=email],select,input[type=number]{
+      width: calc(100% - 57px);
+      height: 36px;
+      margin: 13px 0 0 -5px;
+      padding-left: 10px; 
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #fff; 
+      }
+     
+      #icon {
+      display: inline-block;
+      padding: 9.3px 15px;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: lightseagreen;
+      color: #fff;
+      text-align: center;
+      }
+table{
+    margin-left: 50px;
+ border-collapse: collapse;
+ margin-top:10px;
+}
+a{
+    color: black !important;
+}
+a:hover{
+    background-color: #f2f2f2;
+    color: black !important;
+    border-radius: 3px;
+
+}
+h3{
+    padding: 10px 0;
+      font-size: 32px;
+      font-weight: 300;
+      text-align: center;
+}
+#logo:hover{
+background-color: lightseagreen;
+
+}
+tr:nth-child(odd) {
+background-color: #f2f2f2;
+}
+#topbar{
+    background-color: lightseagreen !important;
+}
+</style>
+<body onload="All()">
+    <nav class="navbar navbar-expand-lg navbar-light   border-bottom" id="topbar">
+        <div class="container-fluid">
+            <a  id="logo" class="navbar-brand" href="#">Assignment Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ml-auto ">
+                    <li class="nav-item active"><a class="nav-link" href="homePage.html">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="practice.html">INTERNS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AssignmentList.html">ASSIGNMENTS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="InternAssignment.html">INTERNASSIGNMENTS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <dialog id="editDialog">
+        <div>
+            <h3> UPDATE ASSIGNMENT</h3>
+            <form id="myeditform" >
+                <hr>
+                <label id="icon" for="id1"><i class="fa fa-key"></i></label>
+                <input type="text" name="internId" id="id1"  minlength="1" maxlength="4" size="4" required/>
+                 <label id="icon" for="name1"><i class="fa fa-user"></i></label>
+                 <input type="text" name="internname" id="name1"   required/>
+                 <label id="icon" for="assname1"><i class="fa fa-BOOK"></i></label>
+                 <input type="text" name="internname" id="assname1"   required/>
+               <label id="icon" for="status1"><i class="fa fa-line-chart"></i></label>
+                 <input type="text" name="internname" id="status1" placeholder="Status*"  required/>
+                 <label  for="remarks"></label>
+                 <input type="number" name="internname" id="remarks" placeholder="Remarks "  required/>
+                 <input id="btn1"  class="button" type="submit" onclick="updateInternAssignment()" ></input>
+             </form>
+        </div>
+    </dialog>
+
+    <!-- <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+           Modal content-->
+         <!--   <div class="modal-content">
+            
+                <div class="modal-body">
+            
+                    <div class="main-block">
+                        <h1>Add Intern</h1>
+                        <form id="myform" >
+                           <hr>
+                           <label id="icon" for="id"><i class="fa fa-key"></i></label>
+                           <input type="text" name="internId" id="id"placeholder="Intern Id*"  required/>
+                            <label id="icon" for="name"><i class="fa fa-user"></i></label>
+                            <input type="text" name="internname" id="name"  placeholder="Intern Name*" required/>
+                           <label id="icon" for="email"><i class="fa fa-envelope"></i></label>
+                            <input type="email" name="email" id="email" placeholder="Email*" required/>
+                            <label id="icon" for="Phoneno"><i class="fa fa-phone"></i></label>
+                            <input type="text" name="PhoneNo" id="Phoneno" placeholder="Phone No*" required minlength="10" maxlength="10" size="10"/>
+                            <label id="icon" for="url"><i class="fa fa-image"></i></label>
+                            <input type="text" name="name" id="url" placeholder="Image Url*" required/>
+                            <hr>
+                            <input id="btn1" class="button" class="button" type="submit" onclick="postInterns()"></input>
+                        </form>
+                   </div>
+                </div>
+            
+                <div class="modal-footer">
+                   <button type="button"id="close" class="btn btn-default" data-dismiss="modal" >Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+<div class="d-flex flex-row" >
+<div class="col-md-3 bg-light d-flex flex-column mt-5"   >
+    <button class="btn " type="button" onclick="All()">All ASSIGNMENTS </button>
+    <br>
+    <button  class=" btn" type ="button" onclick="completed()">COMPLETED ASSIGNMENTS</button>
+    <br>
+    <button class="btn " type="button" onclick="pending()">PENDING ASSIGNMENTS</button>
+    <br>
+    <button onclick="reviewed()" class="btn">REVIEWED ASSIGNMENTS</button>
+</div>
+<div class="col-md-8 mt-5 " id="cont">
+    
+    <table class="table table-borderless w-100" id="internAssignment" >
+     </table>
+
+</div>
+</div>
+
+
+<Script>
+async function All(){
+
+    
+       const url1='http://localhost:8081/ProjectAssignment/getAllInternAssignments'
+        const data= await fetch(url1)
+        .then(response=>response.json())
+        .then((data) =>{
+        // alert(data[0].id)
+
+        document.getElementById("internAssignment").innerHTML=""
+        row1=document.createElement("tr");
+          internId1=document.createElement("th");
+           internName1=document.createElement("th");
+           assignmentId1=document.createElement("th");
+           remarks1=document.createElement("th");
+           action=document.createElement("th");
+
+          internId1.appendChild(document.createTextNode("INTERN ID"))
+           internName1.appendChild(document.createTextNode("INTERN NAME"));
+           assignmentId1.appendChild(document.createTextNode("ASSIGNMENT NAME"));
+           remarks1.appendChild(document.createTextNode("REMARKS"));
+           action.appendChild(document.createTextNode("ACTION"));
+           
+          
+            row1.appendChild(internId1);
+           row1.appendChild(internName1);
+           row1.appendChild(assignmentId1);
+           row1.appendChild(remarks1);
+           row1.appendChild(action);
+
+           document.getElementById("internAssignment").appendChild(row1);
+        for(i=0;i<data.length;i++)
+        {
+            
+            row=document.createElement("tr");
+            internid=document.createElement("td")
+            internid.id="inid"+data[i].id
+            internName=document.createElement("td");
+            internName.id="in"+data[i].id
+            assignmentName=document.createElement("td");
+            assignmentName.id="ass"+data[i].id
+		    remarks=document.createElement("td");
+            edit=document.createElement("button");
+            edit.id="edit"+data[i].id
+            edit.className="border-0 bg-none"
+            edit.style.background="transparent"
+            edit.innerHTML=`<i class="fa fa-edit"></i>`
+            edit.dataset.target="myModal"
+// edit.addEventListener
+            internid.appendChild(document.createTextNode(data[i].intern.internId));
+            internName.appendChild(document.createTextNode(data[i].intern.internName));
+            assignmentName.appendChild(document.createTextNode(data[i].assignment.assignmentName));
+			remarks.appendChild(document.createTextNode(data[i].remarks));
+
+        row.appendChild(internid);
+            row.appendChild(internName);
+            row.appendChild(assignmentName);
+			
+			row.appendChild(remarks);
+            row.appendChild(edit);
+
+            //alert(id+" "+internName+" ")
+            
+            document.getElementById("internAssignment").appendChild(row);
+
+
+        }
+        console.log(data);
+        for(i=0;i<data.length;i++){
+           
+            document.getElementById("edit"+data[i].id).addEventListener("click",function(){
+                var x=this.id.substring(4)
+               // alert("in"+this.id.substring(4))
+                 document.getElementById("id1").value=document.getElementById("inid"+x).innerHTML;
+                 document.getElementById("name1").value=document.getElementById("in"+x).innerHTML;
+                 document.getElementById("assname1").value=document.getElementById("ass"+x).innerHTML;
+                 document.getElementById("editDialog").showModal();
+            })
+        }
+    })
+		// document.getElementById("cont").appendChild(document.getElementById("internAssignment"));
+
+    }
+    
+ async function updateInternAssignment(){
+        document.getElementById("myeditform").addEventListener("submit",async function(event){
+            event.preventDefault();
+            //alert(document.getElementById("assname1").id)
+            var name=document.getElementById("assname1").value;
+            // document.getElementById("assname1").style.display="none";
+            var status1=document.getElementById("status1").value;
+            var remarks1=parseInt(document.getElementById("remarks").value);
+            var iaid=parseInt(document.getElementById("assname1").id.substring(7));
+            var internid=document.getElementById("id1").value;
+            url1=`http://localhost:8081/ProjectAssignment/getAssignmentName/${name}`
+            data=await fetch(url1).then(response=>response.json())
+
+
+             url="http://localhost:8081/ProjectAssignment/updateInternAssignment";
+            
+            let d1={
+                internId:internid
+            }
+            let d2={
+                assignmentId:data[0]
+            }
+            let data1={
+            id:iaid,
+            intern:d1,
+            assignment:d2,
+            status:status1,
+            remarks:remarks1
+            };
+
+            console.log(data1)
+
+            // params1={
+            // method:'PUT',
+            // headers:{
+            // 'Access-Control-Allow-Origin':"*",
+            // 'Content-Type':'application/json',
+            // 'mode':'no-cors',
+            // 'Accept':'application/json'
+            // },
+            // body:JSON.stringify(data1)
+            // }
+
+        await fetch(url,{
+        method:"put",
+        headers : {
+            'Content-Type':'application/json',
+            'Accepts':'application/json'
+
+        },
+        body: JSON.stringify(data1)
+    })
+    .then(res=>res.json())
+    .then(data1=>{
+        
+        console.log(data1);
+        
+          
+         
+    });
+        })
+  
+}
+
+
+async function completed(){
+
+const url1='http://localhost:8081/ProjectAssignment/getAllIsComplete'
+ const data= await fetch(url1)
+ .then(response=>response.json())
+ .then((data) =>{
+ // alert(data[0].id)
+
+ document.getElementById("internAssignment").innerHTML=""
+           row1=document.createElement("tr");
+           
+           internId1=document.createElement("th");
+            assignmentId1=document.createElement("th");
+           
+            remarks1=document.createElement("th");
+          
+           internId1.appendChild(document.createTextNode("INTERN NAME"));
+           assignmentId1.appendChild(document.createTextNode("ASSIGNMENT NAME"));
+           
+           remarks1.appendChild(document.createTextNode("REMARKS"));
+           
+          
+           row1.appendChild(internId1);
+           row1.appendChild(assignmentId1);
+           
+           row1.appendChild(remarks1);
+
+           document.getElementById("internAssignment").appendChild(row1);
+ for(i=0;i<data.length;i++)
+ {
+     
+    row=document.createElement("tr");
+           
+            internId=document.createElement("td");
+             assignmentId=document.createElement("td");
+		    
+		     remarks=document.createElement("td");
+           
+            internId.appendChild(document.createTextNode(data[i].intern.internName));
+            assignmentId.appendChild(document.createTextNode(data[i].assignment.assignmentName));
+			
+			remarks.appendChild(document.createTextNode(data[i].remarks));
+            
+           
+            row.appendChild(internId);
+            row.appendChild(assignmentId);
+			
+			row.appendChild(remarks);
+           
+
+            document.getElementById("internAssignment").appendChild(row);
+
+ }
+})
+ // document.getElementById("cont").appendChild(document.getElementById("internAssignment"));
+
+}
+
+
+   
+async function pending(){
+
+const url1='http://localhost:8081/ProjectAssignment/getAllIsPending'
+ const data= await fetch(url1)
+ .then(response=>response.json())
+ .then((data) =>{
+ // alert(data[0].id)
+
+ document.getElementById("internAssignment").innerHTML=""
+
+ row1=document.createElement("tr");
+           
+           internId1=document.createElement("th");
+           assignmentId1=document.createElement("th");
+           remarks1=document.createElement("th");
+           
+
+          
+           internId1.appendChild(document.createTextNode("INTERN NAME"));
+           assignmentId1.appendChild(document.createTextNode("ASSIGNMENT NAME"));
+           remarks1.appendChild(document.createTextNode("REMARKS"));
+           
+           
+          
+           row1.appendChild(internId1);
+           row1.appendChild(assignmentId1);
+           row1.appendChild(remarks1);
+          
+
+           document.getElementById("internAssignment").appendChild(row1);
+ for(i=0;i<data.length;i++)
+ {
+     
+    row=document.createElement("tr");
+            
+            internId=document.createElement("td");
+             assignmentId=document.createElement("td");
+		     remarks=document.createElement("td");
+            
+            internId.appendChild(document.createTextNode(data[i].intern.internName));
+            assignmentId.appendChild(document.createTextNode(data[i].assignment.assignmentName));
+			remarks.appendChild(document.createTextNode(data[i].remarks));
+
+           
+            row.appendChild(internId);
+            row.appendChild(assignmentId);
+			row.appendChild(remarks);
+
+
+            document.getElementById("internAssignment").appendChild(row);
+
+ }
+})
+ // document.getElementById("cont").appendChild(document.getElementById("internAssignment"));
+
+}
+
+async function reviewed(){
+
+    
+const url1='http://localhost:8081/ProjectAssignment/getAllIsReviewed'
+ const data= await fetch(url1)
+ .then(response=>response.json())
+ .then((data) =>{
+ // alert(data[0].id)
+
+ document.getElementById("internAssignment").innerHTML=""
+
+ row1=document.createElement("tr");
+           
+           internId1=document.createElement("th");
+           assignmentId1=document.createElement("th");
+           remarks1=document.createElement("th");
+           
+
+          
+           internId1.appendChild(document.createTextNode("INTERN NAME"));
+           assignmentId1.appendChild(document.createTextNode("ASSIGNMENT NAME"));
+           remarks1.appendChild(document.createTextNode("REMARKS"));
+           
+           
+          
+           row1.appendChild(internId1);
+           row1.appendChild(assignmentId1);
+           row1.appendChild(remarks1);
+           
+
+           document.getElementById("internAssignment").appendChild(row1);
+ for(i=0;i<data.length;i++)
+ {
+     
+     row=document.createElement("tr");
+     
+     internName=document.createElement("td");
+      assignmentName=document.createElement("td");
+      remarks=document.createElement("td");
+     
+     internName.appendChild(document.createTextNode(data[i].intern.internName));
+     assignmentName.appendChild(document.createTextNode(data[i].assignment.assignmentName));
+    
+     remarks.appendChild(document.createTextNode(data[i].remarks));
+
+    
+     row.appendChild(internName);
+     row.appendChild(assignmentName);
+     
+     row.appendChild(remarks);
+
+     //alert(id+" "+internName+" ")
+     
+     document.getElementById("internAssignment").appendChild(row);
+
+
+ }
+})
+ // document.getElementById("cont").appendChild(document.getElementById("internAssignment"));
+
+}
+
+</Script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

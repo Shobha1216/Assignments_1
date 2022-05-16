@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html>
+<title>creating new Assignment</title>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+   <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+      html,body {
+
+      justify-content: center;
+      font-family: tahoma;
+      font-size: 15px;
+      padding-top: 10px;
+      }
+      input[type=text]{
+      width: 300px;
+      height:50px;
+      padding: 16px 8px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+
+      }
+
+      .button {
+      background-color: #4286f4;
+      color: white;
+      padding: 14px 0;
+      margin: 10px 0;
+      border: none;
+      cursor: grab;
+      width: 150px;
+      }
+
+      .button:hover {
+      opacity: 0.8;
+      background-color: green;
+      }
+      .formcontainer {
+      text-align: center;
+      margin: 20px 50px 12px 450px;;
+      border: 5px solid lightblue ;
+      box-sizing: border-box;
+      width:400px;
+      height:450px;
+
+
+      }
+      .container {
+      padding-left:8px !important;
+      text-align:left !important;
+      padding:30px;
+      width:300px;
+      height:300px;
+
+      }
+h3{
+font-size:20px !important;
+padding-top:15px !important;
+}
+label{
+  margin-left:15px !important;
+  padding-left:15px !important;
+
+}
+
+
+
+    </style>
+</head>
+<body>
+
+
+<form>
+<div class="formcontainer">
+    <h3 id="h1">ADD ASSIGNMENT</h3>
+
+        <label for="id"><strong>Assignment Id</strong></label>
+        <input type="text" placeholder="Enter Assignment Id" name="assignmentId"  id="id" required>
+        <label for="name"><strong>AssignmentName</strong></label>
+        <input type="text"  id="name" placeholder="Enter Assignment Name" name="assignmentname" required>
+        <label for="desc"><strong>Description For Assignment</strong></label>
+        <input type="text"  rows="3"  id="desc" placeholder="Enter Assignment description" name="description">
+
+    <input class="button"  type="submit" onclick="postAssignment()"></input>
+</div>
+</form>
+<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="postassignment.js">
+    $('#deleteamc').on('click',function(e) {
+
+    event.preventDefault();
+var form = this;
+
+        swal({
+  title: "Are you sure?",
+  text: "All data related to this AMC ID will be parmanently deleted",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes, DELETE it!",
+  cancelButtonText: "No, cancel please!",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+	  form.submit();
+	  } else {
+    swal("Cancelled", "AMC Record is safe :)", "error");
+
+  }
+});
+});
+</script>
+
+</body>
+</html>

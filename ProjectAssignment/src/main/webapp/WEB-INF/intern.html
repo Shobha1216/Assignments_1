@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        ul{
+            display: flex;
+            list-style: none;
+            justify-content: space-around;
+            margin-top:50px;
+            background=Linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+        }
+        li{
+            border: 2px solid black;
+            width:200px;
+            height:200px;
+            border-radius:10px;
+            background-color:lightseagreen;
+           border: 1px solid black;
+           box-shadow:3px 5px 3px 5px lightgrey;
+
+        }
+
+    </style>
+</head>
+<body>
+<ul id="edata"></ul>
+<p id="demo"></p>
+<ul id="innerul"></ul>
+<script>
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data=JSON.parse(xhttp.responseText);
+
+            for (let i = 0; i < data.length; i++) {
+                var l1=document.createElement("li");
+                var idnode=document.createTextNode(data[i].internId +"");
+
+                var nnode=document.createTextNode(data[i].internName+"");
+                var enode=document.createTextNode(+data[i].email+"");
+                var pnode=document.createTextNode(data[i].phoneNo+"");
+                var inode=document.createTextNode(data[i].imageUrl+"");
+
+
+                l1.appendChild(idnode);
+                l1.appendChild(nnode);
+                l1.appendChild(enode);
+                l1.appendChild(pnode);
+l1.appendChild(inode);
+                document.getElementById("edata").appendChild(l1);
+
+            }
+
+
+
+    }
+    };
+
+
+
+  xhttp.open("GET", "http://localhost:8081/ProjectAssignment/interns/getAllInterns", true);
+  xhttp.send();
+    </script>
+</body>
+</html>

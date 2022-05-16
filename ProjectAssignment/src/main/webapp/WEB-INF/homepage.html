@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Assignment Tracker</title>
+    <!-- Favicon-->
+
+    <!-- Core theme CSS (includes Bootstrap)-->
+     <!-- <link href="css/styles.css" rel="stylesheet" /> -->
+     <link rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+     crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    #topbar{
+        background-color: lightseagreen !important;
+    }
+    a{
+        color:black!important;
+    }
+    a:hover{
+        box-sizing: border-box;
+        background-color: lightslategrey;
+        border-radius: 10px;
+    }
+    #logo:hover{
+        box-sizing:0 !important;
+        background-color: lightseagreen !important;
+    }
+    #p,#pp{
+        align-items: center;
+    }
+    #pp,#p1{
+        color:azure;
+    }
+</style>
+</head>
+<body>
+
+    
+    
+        <nav class="navbar navbar-expand-lg  border-bottom" id="topbar">
+            <div class="container-fluid">
+                <a id="logo" class="navbar-brand" href="#">Assignment Tracker</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav ml-auto ">
+                        <li class="nav-item active"><a class="nav-link" href="homePage.html">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link" href="practice.html">INTERNS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="AssignmentList.html">ASSIGNMENTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="InternAssignment.html">INTERNASSIGNMENTS</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+
+  
+
+
+<div class="container d-flex flex-row ">
+    <div class="col-4">
+        <canvas id="myChart" height="300" width="300"></canvas>
+    </div>
+    <div class="col-7 d-flex flex-row justify-content-around" >
+       <div  id="card2" class="btn " style="height: 130px; width:200px; margin-top: 120px; background-color:lightblue">
+            <p>TOTAL INTERNS </p>
+           <h1> <p id="p"></p></h1>
+        
+        </div> 
+        <div id="card1" class="btn" style="height: 130px; width:200px; margin-top: 120px; background-color:#4A5596 ">
+            <p id="p1">TOTAL ASSIGNMENTS</p>
+            <h1><p  id="pp"></p></h1>
+        </div>
+    </div>
+</div>
+
+</div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="js/scripts.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+
+
+<script>
+$(document).ready(
+    function(){
+        showGraph();
+    }
+);
+function showGraph()
+{
+  $.get("http://localhost:8081/ProjectAssignment/getWithStatus",
+
+    function(data){
+
+    var name = ['COMPLETED','PENDING','REVIEWED'];
+    var details = [];
+    for(let i=0;i<data.length;i++)
+        {
+     details.push(data[i]);
+        }
+
+    var chartdata={
+        labels: name,
+        datasets: [
+        {
+            backgroundColor: ['#97A1D9','#4A5596','lightblue'],
+            data: details
+        }
+        ]
+    };
+    var options={
+title: {
+    display: true,
+    text: 'ASSIGNMENTS STATUS'
+},
+elements:{
+arc: {
+    borderWidth: 0
+}
+}
+};
+var graphTarget = $("#myChart");
+var graph=new Chart(graphTarget,{
+    type: 'pie',
+     data: chartdata,
+     options:options
+});
+
+  });
+}
+//or interns count
+ const p = document.getElementById("p")
+         fetch('http://localhost:8081/ProjectAssignment/interns/getInternCount')
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        p.innerText = data
+    });
+		console.log(p);
+
+//for assignment count
+const pp = document.getElementById("pp")
+         fetch('http://localhost:8081/ProjectAssignment/getAssignmentCount')
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        pp.innerText = data
+    });
+		console.log(pp);
+
+</script>
+</body>
+</html>

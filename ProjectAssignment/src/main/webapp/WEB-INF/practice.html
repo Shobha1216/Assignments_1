@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,
+			initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- <script src="sweetalert2.min.js"></script> -->
+    <!-- <link rel="stylesheet" href="sweetalert2.min.css"> -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    
+    <link rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+     crossorigin="anonymous">
+    <title>
+        Api data collecting
+    </title>
+
+    <style>
+        /* html, body {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      }
+      body, div, h1, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      } */
+      h1 {
+      padding: 10px 0;
+      font-size: 32px;
+      font-weight: 300;
+      text-align: center;
+      }
+      p {
+      font-size: 12px;
+      }
+      hr {
+      color: lightseagreen;
+      opacity: 1;
+      }
+      .main-block {
+      max-width: 340px; 
+      min-height: 400px; 
+      padding: 10px 0;
+      margin: auto;
+      border-radius: 5px; 
+      border: solid 1px #ccc;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+      background: #ebebeb; 
+      }
+      form {
+      margin: 0 30px;
+      }
+     
+      
+      label#icon {
+      margin: 0;
+      border-radius: 5px 0 0 5px;
+      }
+     
+      input[type=text],input[type=email],select,input[type=number]{
+      width: calc(100% - 57px);
+      height: 36px;
+      margin: 13px 0 0 -5px;
+      padding-left: 10px; 
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #fff; 
+      }
+     
+      #icon {
+      display: inline-block;
+      padding: 9.3px 15px;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: lightseagreen;
+      color: #fff;
+      text-align: center;
+      }
+      #btn1 {
+      margin-top: 10px;
+      text-align: center;
+      }
+     #btn1 {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px; 
+      border: none;
+      background: lightseagreen; 
+      font-size: 14px;
+      font-weight: 600;
+      color: white
+
+      }
+    #btn1:hover {
+      background: rgba(90, 79, 252, 0.929);
+      }
+      a{
+        color: black!important;
+      }
+      a:hover{
+        background-color: #cbc9c9;
+        border-radius: 3px;
+        color: black;
+      }
+      span{
+        font-weight: 10px;
+      }
+
+        .container{
+        display:flex !important;
+        justify-content: space-around !important;
+        
+        flex-wrap:wrap-reverse !important;
+        flex-flow:row-wrap !important;
+        margin-top:20px !important;
+        }  
+      
+        .maindiv{
+        
+        box-shadow:1px 1px 1px 1px rgba(19, 18, 17, 0.025)!important;
+        border-radius:30px v;
+        justify-content:center !important;
+       
+        font-size:10px !important;
+        width:200px !important;
+       
+        align-items:center !important;
+
+
+        }
+        h1{
+        text-align:center;
+        margin-top: 40px;
+        }
+        .image{
+        border-radius:50% !important;
+        }
+       #topbar{
+         background-color: lightseagreen !important;
+       }
+
+        #button {
+     line-height: 25px;
+     width: 120px;
+     font-size: 15px;
+     font-family: tahoma;
+     margin-top: 70px;
+     margin-right: 50px;
+     position:absolute;
+     top:0;
+     right:0;
+     background-color:lightseagreen;
+     border: 1px blue;
+     padding:2px;
+     color:black;
+ }
+
+a{
+text-decoration:none;
+}
+   
+#button:hover{
+  background: #26a9e0;
+color: white;
+}
+/* #button1:hover{
+  background: #26a9e0;
+color: white;
+}  */
+
+#snackbar,#snackbar2,#snackbar1{
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color:green;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 30px;
+  font-size: 17px;
+}
+#logo:hover{
+  background-color: lightseagreen;
+}
+
+#snackbar.show{
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar1.show{
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {top: 0; opacity: 0;} 
+  to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {top: 0; opacity: 0;}
+  to {top: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {top: 30px; opacity: 1;} 
+  to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {top: 30px; opacity: 1;}
+  to {top: 0; opacity: 0;}
+}
+    </style>
+
+</head>
+
+<body >
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="topbar">
+    <div class="container-fluid">
+        <a  id="logo" class="navbar-brand" href="#">Assignment Tracker</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item active"><a class="nav-link" href="homePage.html">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="practice.html">INTERNS</a></li>
+                <li class="nav-item"><a class="nav-link" href="AssignmentList.html">ASSIGNMENTS</a></li>
+                <li class="nav-item"><a class="nav-link" href="InternAssignment.html">INTERNASSIGNMENTS</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- <button id="button" type="button" data-target="#myModal"><i class="fa fa-user-plus" aria-hidden="true"></i>Add Intern</a></button> -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="button"><i class="fa fa-user-plus" aria-hidden="true"></i>ADD INTERN</button>
+<h1>INTERN  DETAILS</h1>
+<div class="container" >
+ 
+<div class=" row flex-wrap-reverse" id="divoutside">
+ 
+    
+</div>
+</div>
+
+<div id="snackbar">Successfully Deleted Intern...</div>
+<!-- <div id="snackbar1"> Successfully Added Intern...</div>
+<div id="snackbar2"> Successfully Added Assignment...</div> -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Open modal for @fat</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+       <div class="modal-content">
+        
+            <div class="modal-body">
+        
+                <div class="main-block">
+                    <h1>ADD INTERN</h1>
+                    <form id="myform" >
+                       <hr>
+                       <label id="icon" for="id"><i class="fa fa-key"></i></label>
+                       <input type="number" name="internId" id="id" placeholder="INTERN ID*"  minlength="6" maxlength="6" size="6" required/>
+                        <label id="icon" for="name"><i class="fa fa-user"></i></label>
+                        <input type="text" name="internname" id="name"  placeholder="INTERN NAME*" required/>
+                       <label id="icon" for="email"><i class="fa fa-envelope"></i></label>
+                        <input type="email" name="email" id="email" placeholder="EMAIL*" required/>
+                        <label id="icon" for="Phoneno"><i class="fa fa-phone"></i></label>
+                        <input type="number" name="PhoneNo" id="Phoneno" placeholder="PHONE NO*" required minlength="10" maxlength="10" size="10"/>
+                        <label id="icon" for="url"><i class="fa fa-image"></i></label>
+                        <input type="text" name="name" id="url" placeholder="IMAGE URL*" required/>
+                        <hr>
+                        <input id="btn1" class="button" class="button" type="submit" onclick="postInterns()"></input>
+                    </form>
+               </div>
+            </div>
+        
+            <div class="modal-footer">
+               <button type="button"id="close" class="btn btn-default" data-dismiss="modal" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="addAsignments()">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+           
+        </div>
+        <div class="main-block">
+        <div class="modal-body">
+            <h1> Add Assignment</h1>
+            <form id="myform1" >
+               <hr>
+               <label id="icon" for="iid1"><i class="fa fa-key"></i></label>
+               <input type="number" name="iaid" id="iid1"  minlength="1" maxlength="4" size="4" required/>
+
+               <label id="icon" for="id1"><i class="fa fa-key"></i></label>
+               <input type="number" name="internId" id="id1"  minlength="1" maxlength="4" size="4" required/>
+                <label id="icon" for="name1"><i class="fa fa-user"></i></label>
+                <input type="text" name="internname" id="name1"   required/>
+              
+               <select name="assignmentname" id="assignmentname" style="width: 100%;">
+              </select>
+                <button id="btn1"  class="button" type="button" onclick="postInternAssignment()">submit</button>
+            </form>
+        </div>
+    </div>
+        <div class="modal-footer">
+          <button type="button" id="close1" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- <script src="postIntern.js"></script> -->
+
+
+<script>
+
+
+
+
+async function postInterns(){
+    // alert("hi")
+    // document.getElementById("myform1").addEventListener('submit',async function(event){
+    //     event.preventDefault();
+    url="http://localhost:8081/ProjectAssignment/interns/createIntern";
+    var internId=document.getElementById("id").value;
+    console.log(internId);
+    var internName=document.getElementById("name").value;
+    console.log(internName);
+    var email=document.getElementById("email").value;
+    var phoneNo=document.getElementById("Phoneno").value;
+    var imageUrl=document.getElementById("url").value
+    let data={
+        internId:internId,
+        internName:internName,
+        email:email,
+        phoneNo:phoneNo,
+        imageUrl:imageUrl
+
+    };
+
+    console.log(data);
+
+    await fetch(url,{
+        method:"post",
+        headers : {
+            'Content-Type':'application/json',
+            'Accepts':'application/json'
+
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        alert("came here")
+        console.log(data);
+        alert("came here")
+          success();
+         
+    });
+    // window.location.href="practice.html"
+}
+function success(){
+    alert(hi);
+    var x=document.getElementById("snackbar1");
+    x.className="show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){  window.location.href="practice.html"}, 3000);
+}
+
+// function error(){
+//     var x=document.getElementById("snackbar1");
+//     x.className="show";
+//     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+// }
+
+async function postInternAssignment(){
+  
+        var name=document.getElementById("assignmentname").value;
+        
+         var iaid=document.getElementById("iid1").value
+         var internid=document.getElementById("id1").value;
+         url1=`http://localhost:8081/ProjectAssignment/getAssignmentName/${name}`
+         data=await fetch(url1).then(response=>response.json())
+     
+
+       url="http://localhost:8081/ProjectAssignment/createInternAssignment";
+        
+        let d1={
+          internId:internid
+        }
+        let d2={
+          assignmentId:data[0]
+        }
+        let data1={
+        id:parseInt(iaid),
+        intern:d1,
+        assignment:d2,
+        // status:"isComplete",
+        // remarks:0
+    };
+
+    console.log(data1)
+
+    params1={
+      method:'POST',
+      headers:{
+        'Access-Control_Allow_Origin':"*",
+        'Content-Type':'application/json',
+        'mode':'no-cors',
+        'Accept':'application/json'
+      },
+      body:JSON.stringify(data1)
+    }
+    await fetch(url,params1).then((response)=>{response.json()})
+    
+    window.location.href="InternAssignment.html";
+    }
+         
+   
+    
+
+
+		output();
+
+		function output() {
+
+
+			const xhr = new XMLHttpRequest();
+
+
+			xhr.open("GET","http://localhost:8081/ProjectAssignment/interns/getAllInterns", true);
+
+
+			xhr.onload = function () {
+				var obj=JSON.parse(this.responseText);
+
+                     data=""
+					 for (let i = 0; i < obj.length; i++) {
+             if(obj[i].email === '' || obj[i].email === null   ) {
+               continue;
+             }
+					data+=`
+                <div class="col-md-4  col-ls-4 col-sm-4 p-5" style="overflow-y: auto">
+                    <div class="card" style="border-radius: 25px;background-color:rgba(32, 178, 171, 0.183);">
+                        <div class="card-img-top"><img src="${obj[i].imageUrl}" alt="" style="border-radius:50%; margin-left:70px; margin-top:10px"></div>
+                            <div class="card-body">
+                             <p><strong>INTERN ID:</strong> ${obj[i].internId}</p>
+                              <p><strong> NAME:</strong> ${obj[i].internName}</p>
+                               <p><strong>EMAIL:</strong> ${obj[i].email}</p>
+                                <p> <strong>PHONE NO:</strong>${obj[i].phoneNo}</p>
+                               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" style="" data-target="#exampleModalCenter" id="${obj[i].internId}" onclick="addAsignments()">Add Assignment</button>
+                        
+                               <button <i class="fa fa-2x fa-trash-o  bg-none border-0"style="background:transparent" aria-hidden="true"  onclick="deleteInternById(${obj[i].internId})"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    `
+                   var x=obj[i].internId
+                    $(document).ready(function(){
+                    $("#"+obj[i].internId).click(function(){
+                    $("#exampleModalCenter").modal("show");
+                    document.getElementById("id1").value=`${obj[i].internId}`;
+                    document.getElementById("name1").value=`${obj[i].internName}`;
+                     });
+                    
+                     $("#close1").click(function(){
+                      $("#exampleModalCenter").modal("hide");
+                     });
+                    });
+
+
+                    $(document).ready(function(){
+                    $("#button").click(function(){
+                    $("#myModal").modal("show");
+                     });
+                    
+                     $("#close").click(function(){
+                      $("#myModal").modal("hide");
+                     });
+                    });
+             
+				}
+                     document.getElementById("divoutside").innerHTML=data;
+                     
+					}
+			xhr.send();
+		}
+
+
+        function addAsignments(){
+        const url1='http://localhost:8081/ProjectAssignment/getAllAssignments'
+              const result= fetch(url1)
+              .then(response=>response.json())
+              .then((data) => {
+                  data.map((i) =>{
+                    
+                    var opt=document.createElement("option");
+                    opt.appendChild(document.createTextNode(i.assignmentName))
+                    document.getElementById("assignmentname").appendChild(opt)
+                    
+                  })
+                 
+              })
+                
+             
+    }
+
+    async function deleteInternById(x){
+        
+    url=("http://localhost:8081/ProjectAssignment/interns/del?"+ new URLSearchParams({id:x}).toString());
+    
+    
+    let data={
+        internId:x
+       
+    };
+    console.log(data);
+    await fetch(url,{
+        
+        method:"delete",
+        headers : {
+            'Content-Type':'application/json',
+            'Accepts':'application/json'
+
+        },
+        
+        body: JSON.stringify(data)
+    })
+   
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        deleteSnackbar();
+      });
+//window.location.href="practice.html"
+       
+}
+
+
+
+
+
+function deleteSnackbar(){
+    alert(" confirm delete")
+    var x=document.getElementById("snackbar");
+    x.className="show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){  window.location.href="practice.html"}, 3000);
+
+}
+
+function internAssignment(){
+    aler("hi assignment")
+    var x=document.getElementById("snackbar2");
+    x.className="show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    setTimeout(function(){  window.location.href="practice.html"}, 3000);
+
+}
+
+	</script>
+
+</body>
+
+</html>

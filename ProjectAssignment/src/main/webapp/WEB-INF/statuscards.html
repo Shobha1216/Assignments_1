@@ -1,0 +1,124 @@
+<html>
+<head>
+    <style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+}
+
+/* Modal Content */
+.modal-content {
+    background:lightblue;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width:250px;
+    height:400px;
+}
+
+/* The Close Button */
+.close {
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#statusCard{
+display:flex;
+flex-direction: column;
+width:200px;
+height:400px;
+justify-content:space-between;
+align-items:center;
+text-align: center;
+
+
+}
+.inside{
+border: 1px solid black;
+box-shadow:1px 1px 1px 1px black;
+border-radius:20px;
+height: 50%;
+width:50%;
+padding-top:30px;
+margin-top:15px;
+margin-left:30px;
+background-color:rgb(244, 242, 120);
+
+}
+a{
+text-decoration:none;
+color:black;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Status</h2>
+
+
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="statusContainer" id="statusCard">
+                <div class="inside">
+                    <a href="isComplete.html" class="w3-bar-item-rounded w3-button ">Completed Assignments</a>
+                </div>
+                <div class="inside">
+                    <a href="isPending.html" class="w3-bar-item-rounded w3-button ">Pending Assignments</a>
+                </div>
+
+                <div class="inside">
+                    <a href="isReviewed.html" class="w3-bar-item-rounded w3-button "> Reviewed Assignments</a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
